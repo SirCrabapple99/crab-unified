@@ -1,0 +1,87 @@
+/* general site stuff */
+:root {
+    --bg: #13161a;
+    --bgSecondary: #1d264c;
+    
+    --accent-color: #9de5ff;
+
+    --border-color: color-mix(var(--accent-color), white 15%);
+    --accent-color-dark: color-mix(var(--accent-color), black 15%);
+    --accent-color-transparent: color-mix(var(--accent-color), transparent 30%);
+
+    --font-color-accent-medium-dark: color-mix(var(--accent-color), black 50%);
+}
+
+svg {
+    overflow: visible !important;
+    contain: none !important;
+    pointer-events: none;
+    position: fixed;
+    display: block;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+}
+
+body,
+html {
+    /* background-color: var(--bg); */
+    user-select: none;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+
+#backgroundHolder {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg);
+}
+
+/* top bar */
+#topbar {
+    display: flex;
+    box-sizing: border-box;
+    width: 75vw;
+    height: 30px;
+
+    margin-top: 10px;
+    place-self: center;
+    border-radius: 50px;
+    border: 1.5px solid var(--border-color);
+
+    background-color: var(--accent-color-dark);
+}
+
+#searchBar {
+    margin: auto;
+    margin-right: 20%;
+    height: 80%;
+    width: 40%;
+    border-radius: 50px;
+    display: flex;
+
+    background: var(--accent-color-transparent);
+}
+
+#searchInput {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    text-align: left;
+    margin-left: 12px;
+    color: var(--font-color-accent-medium-dark);
+    font-size: 14px
+}
+
+#searchInput::placeholder {
+    color: var(--font-color-accent-medium-dark);
+}
