@@ -1,87 +1,116 @@
-/* general site stuff */
 :root {
+    --accent-color: #f29dff;
+    --accent-color-dark: color-mix(var(--accent-color), black 15%);
+    --accent-color-light-dark: color-mix(var(--accent-color), white 5%);
+    --accent-color-light: color-mix(var(--accent-color), white 15%);
+    --accent-color-light-light: color-mix(var(--accent-color), white 30%);
+    --accent-color-transparent: color-mix(var(--accent-color), transparent 30%);
     --bg: #13161a;
     --bgSecondary: #1d264c;
-    
-    --accent-color: #9de5ff;
-
     --border-color: color-mix(var(--accent-color), white 15%);
-    --accent-color-dark: color-mix(var(--accent-color), black 15%);
-    --accent-color-transparent: color-mix(var(--accent-color), transparent 30%);
-
-    --font-color-accent-medium-dark: color-mix(var(--accent-color), black 50%);
-}
-
-svg {
-    overflow: visible !important;
-    contain: none !important;
-    pointer-events: none;
-    position: fixed;
-    display: block;
-    margin: 0;
-    padding: 0;
-    top: 0;
-    left: 0;
+    --font-color-accent: color-mix(var(--accent-color), black 50%);
+    --font-color-accent-light: color-mix(var(--accent-color), black 30%)
 }
 
 body,
 html {
-    /* background-color: var(--bg); */
     user-select: none;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
+    margin: 0;
+    padding: 0
 }
 
 #backgroundHolder {
     position: absolute;
     z-index: -2;
     inset: 0;
-
     width: 100%;
     height: 100%;
-    background-color: var(--bg);
+    background-color: var(--bg)
 }
 
-/* top bar */
 #topbar {
     display: flex;
+    flex-direction: row;
     box-sizing: border-box;
     width: 75vw;
     height: 30px;
-
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, .1);
     margin-top: 10px;
     place-self: center;
-    border-radius: 50px;
+    place-items: center;
+    border-radius: 100px;
     border: 1.5px solid var(--border-color);
+    background-color: var(--accent-color-dark)
+}
 
-    background-color: var(--accent-color-dark);
+#searchIcon {
+    width: 20px;
+    height: 20px;
+    margin-left: 4px;
+    color: var(--accent-color-light);
+    transition: all .2s
+}
+
+#searchIcon:hover {
+    color: var(--accent-color-light-light);
+    transform: scale(1.1);
+    stroke-width: 2.25
+}
+
+#searchBar,
+#searchInput {
+    transition: all .2s;
+    opacity: 1
 }
 
 #searchBar {
-    margin: auto;
-    margin-right: 20%;
+    margin-right: auto;
+    margin-left: 1px;
     height: 80%;
     width: 40%;
-    border-radius: 50px;
+    border-radius: 100px;
     display: flex;
+    overflow: hidden;
+    background: var(--accent-color);
+    transform-origin: left center;
+    transform: scaleX(1)
+}
 
-    background: var(--accent-color-transparent);
+#searchBar.closed {
+    width: 0;
+    opacity: 0;
+    transform: scaleX(0)
 }
 
 #searchInput {
     background-color: transparent;
-    border: none;
-    outline: none;
+    border: 0;
+    outline: 0;
     text-align: left;
-    margin-left: 12px;
-    color: var(--font-color-accent-medium-dark);
+    margin-left: 6px;
+    color: var(--font-color-accent);
     font-size: 14px
 }
 
+#searchBar.closed #searchInput {
+    transform: scaleX(3);
+    opacity: 0
+}
+
 #searchInput::placeholder {
-    color: var(--font-color-accent-medium-dark);
+    color: var(--font-color-accent-light)
+}
+
+#settingsIcon {
+    margin-right: 4px;
+    color: var(--accent-color-light);
+    transition: all .2s
+}
+
+#settingsIcon:hover {
+    color: var(--accent-color-light-light);
+    transform: rotatez(.25turn) scale(1.1)
 }
