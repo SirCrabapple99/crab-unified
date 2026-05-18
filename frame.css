@@ -1,10 +1,10 @@
 :root {
-    --accent-color: #f29dff;
+    --accent-color: rgb(211, 130, 255);
     --accent-color-dark: color-mix(var(--accent-color), black 15%);
     --accent-color-light-dark: color-mix(var(--accent-color), white 5%);
     --accent-color-light: color-mix(var(--accent-color), white 15%);
     --accent-color-light-light: color-mix(var(--accent-color), white 30%);
-    --accent-color-transparent: color-mix(var(--accent-color), transparent 30%);
+    --accent-color-transparent: color-mix(var(--accent-color), transparent 75%);
     --bg: #13161a;
     --bgSecondary: #1d264c;
     --border-color: color-mix(var(--accent-color), white 15%);
@@ -19,7 +19,9 @@ html {
     display: flex;
     flex-direction: column;
     margin: 0;
-    padding: 0
+    padding: 0;
+    width: 100%;
+    height: 100%;
 }
 
 #backgroundHolder {
@@ -34,30 +36,16 @@ html {
 #topbar {
     display: flex;
     flex-direction: row;
-    box-sizing: border-box;
+
     width: 75vw;
-    height: 30px;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, .1);
-    margin-top: 10px;
+    height: 6%;
+    margin-top: 1.5vmin;
     place-self: center;
     place-items: center;
-    border-radius: 100px;
-    border: 1.5px solid var(--border-color);
+    border-radius: 999px;
+    /* wow using a box shadow looks 10x better than a regular border */
+    box-shadow: inset 0 0 0 0.2vmin var(--border-color);
     background-color: var(--accent-color-dark)
-}
-
-#searchIcon {
-    width: 20px;
-    height: 20px;
-    margin-left: 4px;
-    color: var(--accent-color-light);
-    transition: all .2s
-}
-
-#searchIcon:hover {
-    color: var(--accent-color-light-light);
-    transform: scale(1.1);
-    stroke-width: 2.25
 }
 
 #searchBar,
@@ -68,7 +56,7 @@ html {
 
 #searchBar {
     margin-right: auto;
-    margin-left: 1px;
+    margin-left: 0.75vmin;
     height: 80%;
     width: 40%;
     border-radius: 100px;
@@ -90,9 +78,9 @@ html {
     border: 0;
     outline: 0;
     text-align: left;
-    margin-left: 6px;
+    margin-left: 1.25vmin;
     color: var(--font-color-accent);
-    font-size: 14px
+    font-size: 2.75vmin;
 }
 
 #searchBar.closed #searchInput {
@@ -104,13 +92,142 @@ html {
     color: var(--font-color-accent-light)
 }
 
-#settingsIcon {
-    margin-right: 4px;
+#questionIcon {
     color: var(--accent-color-light);
-    transition: all .2s
+    transition: all .2s;
+    margin-right: -0.25vmin;
+    /* mostly fix jittering if mouse is on edge by making it a circle */
+    border-radius: 50%;
+}
+
+#questionIcon:hover {
+    color: var(--accent-color-light-light);
+    transform: rotatez(.25turn) scale(1.1)
+}
+
+#settingsIcon {
+    margin-right: 1.5vmin;
+    color: var(--accent-color-light);
+    transition: all .2s;
+    border-radius: 50%;
 }
 
 #settingsIcon:hover {
     color: var(--accent-color-light-light);
     transform: rotatez(.25turn) scale(1.1)
+}
+
+/* all styles */
+#grid::-webkit-scrollbar {
+    display: none;
+}
+
+/* style crab */
+#grid {
+    scrollbar-width: none;
+    overscroll-behavior: auto;
+    align-content: start;
+
+    display: grid;
+    width: 95%;
+    margin: auto;
+    height: 100%;
+
+    margin-bottom: 1.5vmin;
+    border-radius: 50px;
+    padding: 2.5vmin;
+
+    overflow-y: scroll;
+    margin-top: 1.5vmin;
+    justify-content: center;
+
+    grid-template-columns: repeat(auto-fit, minmax(30vmin, 1fr));
+    gap: 2.5vmin;
+    box-shadow: inset 0 0 0 0.2vmin var(--border-color);
+}
+
+.game {
+    aspect-ratio: 1;
+    transition: all 0.1s;
+}
+
+.gameImage {
+    background-image: url(https://www.shutterstock.com/image-photo/single-fresh-tuna-fish-isolated-260nw-2634483817.jpg);
+    background-position: 50%;
+    aspect-ratio: 1;
+    border-radius: 25px;
+    transition: all 0.2s;
+    display: grid;
+    overflow: hidden;
+}
+
+.game:hover>.gameImage {
+    box-shadow: inset 0 0 0 0.2vmin var(--border-color);
+}
+
+.gameLabel {
+    opacity: 0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+}
+
+.game:hover>.gameImage>.gameLabel {
+    opacity: 1;
+    color: var(--font-color-accent);
+    background-color: var(--accent-color-transparent);
+    height: 100%;
+}
+
+/* style gn */
+#grid.gn {
+    scrollbar-width: none;
+    overscroll-behavior: auto;
+
+    display: grid;
+    width: 95%;
+    margin: auto;
+    height: 100%;
+
+    margin-bottom: 1.5vmin;
+    border-radius: 50px;
+    padding: 2.5vmin;
+
+    overflow-y: scroll;
+    margin-top: 1.5vmin;
+    justify-content: center;
+
+    grid-template-columns: repeat(auto-fit, minmax(4, 600vmin));
+    gap: 2.5vmin;
+}
+
+.game.gn {
+    aspect-ratio: 4 / 5;
+    background-color: lime;
+    border-radius: 25px;
+}
+
+.gameImage.gn {
+    background-image: url(https://www.shutterstock.com/image-photo/single-fresh-tuna-fish-isolated-260nw-2634483817.jpg);
+    background-position: 50%;
+    aspect-ratio: 1;
+    border-radius: 25px 25px 0 0;
+}
+
+.gameLabel.gn {}
+
+/* popup menus */
+#gamePopup {
+    top: 50%;
+    left: 50%;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transform-origin: center;
+    background-color: var(--bg);
+    transition: transform 0.3s;
 }
