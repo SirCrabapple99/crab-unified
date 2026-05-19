@@ -5,14 +5,11 @@
     <script>
         eruda.init();
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
         rel="stylesheet">
-
-    <link rel="stylesheet" href="frame.css">
     <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="everything.css">
 </head>
 
 <body>
@@ -26,7 +23,17 @@
         </div>
 
         <!-- div wrapper on icons is so that margin and stuff doesn't get screwed up -->
-        <div class="iconFix" style="margin-right: -0.25vmin">
+        <div class="iconFix" style="margin-right: auto; margin-left: 0.4vmin">
+            <svg id="plusIcon" xmlns="http://www.w3.org/2000/svg" width="auto" height="80%" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-circle-plus-icon lucide-circle-plus">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M8 12h8" />
+                <path d="M12 8v8" />
+            </svg>
+        </div>
+
+        <div class="iconFix" style="margin-right: -0.4vmin">
             <svg id="questionIcon" xmlns="http://www.w3.org/2000/svg" width="auto" height="80%" viewBox="0 0 24 24"
                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="lucide lucide-circle-question-mark-icon lucide-circle-question-mark">
@@ -37,7 +44,7 @@
         </div>
 
         <div class="iconFix">
-            <svg id="settingsIcon" onclick="toggleSettingsMenu();" xmlns="http://www.w3.org/2000/svg" width="auto"
+            <svg id="settingsIcon" onclick="openSettingsMenu();" xmlns="http://www.w3.org/2000/svg" width="auto"
                 height="80%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cog-icon lucide-cog">
                 <path d="M11 10.27 7 3.34" />
@@ -59,32 +66,38 @@
     </div>
 
     <div id="grid">
-        <div class="game">
+        <div class="game" onclick="openGamesMenu();" onmousemove="mouseEffect(event)"
+            onmouseleave="event.currentTarget.querySelector('.gameImage').style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';">
             <div class="gameImage">
                 <div class="gameLabel  ubuntu-medium">Fish Games</div>
             </div>
         </div>
-        <div class="game">
+        <div class="game" onclick="openGamesMenu();" onmousemove="mouseEffect(event)"
+            onmouseleave="event.currentTarget.querySelector('.gameImage').style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';">
             <div class="gameImage">
                 <div class="gameLabel  ubuntu-medium">Fish Games</div>
             </div>
         </div>
-        <div class="game">
+        <div class="game" onclick="openGamesMenu();" onmousemove="mouseEffect(event)"
+            onmouseleave="event.currentTarget.querySelector('.gameImage').style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';">
             <div class="gameImage">
                 <div class="gameLabel  ubuntu-medium">Fish Games</div>
             </div>
         </div>
-        <div class="game">
+        <div class="game" onclick="openGamesMenu();" onmousemove="mouseEffect(event)"
+            onmouseleave="event.currentTarget.querySelector('.gameImage').style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';">
             <div class="gameImage">
                 <div class="gameLabel  ubuntu-medium">Fish Games</div>
             </div>
         </div>
-        <div class="game">
+        <div class="game" onclick="openGamesMenu();" onmousemove="mouseEffect(event)"
+            onmouseleave="event.currentTarget.querySelector('.gameImage').style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';">
             <div class="gameImage">
                 <div class="gameLabel  ubuntu-medium">Fish Games</div>
             </div>
         </div>
-        <div class="game">
+        <div class="game" onclick="openGamesMenu();" onmousemove="mouseEffect(event)"
+            onmouseleave="event.currentTarget.querySelector('.gameImage').style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';">
             <div class="gameImage">
                 <div class="gameLabel  ubuntu-medium">Fish Games</div>
             </div>
@@ -92,19 +105,65 @@
     </div>
 
     <!-- popup menus -->
+    <div id="repoMenu">
+        <div id="repoLeftPanel">
+            <div id="repoUrl">
+                <input type="text" placeholder="repo url..." id="repoUrlInput" class="ubuntu-medium">
+            </div>
+            <div id="repoType">
+                <div id="repoTypeJson">JSON</div>
+                <div id="repoTypePlaceholder">Placeholde</div>
+            </div>
+        </div>
+        <div id="repoRightPanel">
+
+        </div>
+    </div>
+
     <div id="settingsMenu">
 
     </div>
 
     <div id="gamePopup">
-
+        <iframe id="gameFrame"></iframe>
+        <div id="gameToolbar">
+            <div id="gameInfo" onclick="openGameInfo()">
+                <div id="gameName" class="ubuntu-medium">Game Name Really Long Title</div>
+            </div>
+            <div class="iconFix">
+                <svg id="gameFullscreenIcon" xmlns="http://www.w3.org/2000/svg" width="auto" height="70%"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="lucide lucide-maximize-icon lucide-maximize">
+                    <path d="M8 3H5a2 2 0 0 0-2 2v3" />
+                    <path d="M21 8V5a2 2 0 0 0-2-2h-3" />
+                    <path d="M3 16v3a2 2 0 0 0 2 2h3" />
+                    <path d="M16 21h3a2 2 0 0 0 2-2v-3" />
+                </svg>
+            </div>
+            <div class="iconFix">
+                <svg id="gameDownloadIcon" xmlns="http://www.w3.org/2000/svg" width="auto" height="70%"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="lucide lucide-download-icon lucide-download">
+                    <path d="M12 15V3" />
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <path d="m7 10 5 5 5-5" />
+                </svg>
+            </div>
+            <div class="iconFix">
+                <svg id="gameExitIcon" onclick="closeGamesMenu()" xmlns="http://www.w3.org/2000/svg" width="auto"
+                    height="80%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x">
+                    <path d="M18 6 6 18" />
+                    <path d="m6 6 12 12" />
+                </svg>
+            </div>
+        </div>
     </div>
-
     <script>window.onload = () => {
 
-            document.getElementById("gamePopup").style.opacity = "1";
         }</script>
     <script src="frame.js"></script>
+    <script src="repo.js"></script>
 </body>
 
 </html>

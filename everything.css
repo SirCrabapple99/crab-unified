@@ -1,0 +1,408 @@
+:root {
+    --accent-color: rgb(211, 130, 255);
+    --accent-color-dark: color-mix(var(--accent-color), black 15%);
+    --accent-color-dark-dark: color-mix(var(--accent-color), black 30%);
+    --accent-color-dark-dark-dark: color-mix(var(--accent-color), black 50%);
+    --accent-color-light-dark: color-mix(var(--accent-color), white 5%);
+    --accent-color-light: color-mix(var(--accent-color), white 15%);
+    --accent-color-light-light: color-mix(var(--accent-color), white 30%);
+    --accent-color-transparent: color-mix(var(--accent-color), transparent 50%);
+    --accent-color-transparent-low: color-mix(var(--accent-color), transparent 25%);
+    --accent-color-transparent-high: color-mix(var(--accent-color), transparent 75%);
+    --bg: #13161a;
+    --bg-secondary: #1d264c;
+    --bg-accent: color-mix(var(--accent-color), black 75%);
+    --border-color: color-mix(var(--accent-color), white 15%);
+    --font-color-accent: color-mix(var(--accent-color), black 50%);
+    --font-color-accent-light: color-mix(var(--accent-color), black 30%);
+    --font-color-accent-dark: color-mix(var(--accent-color), black 75%);
+
+    --danger-color: color-mix(var(--accent-color), red 60%);
+}
+
+body,
+html {
+    user-select: none;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#backgroundHolder {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg)
+}
+
+#topbar {
+    display: flex;
+    flex-direction: row;
+
+    width: 75vw;
+    height: 6%;
+    margin-top: 1.5vmin;
+    place-self: center;
+    place-items: center;
+    border-radius: 999px;
+    /* wow using a box shadow looks 10x better than a regular border */
+    box-shadow: inset 0 0 0 0.2vmin var(--border-color);
+    background-color: var(--accent-color-dark);
+}
+
+#searchBar,
+#searchInput {
+    transition: all .2s;
+    opacity: 1
+}
+
+#searchBar {
+    margin-left: 0.6vh;
+    height: 80%;
+    width: 40%;
+    border-radius: 999px;
+    display: flex;
+    overflow: hidden;
+    background: var(--accent-color);
+    transform-origin: left center;
+    transform: scaleX(1)
+}
+
+#searchBar.closed {
+    width: 0;
+    opacity: 0;
+    transform: scaleX(0)
+}
+
+#searchInput {
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    text-align: left;
+    margin-left: 1.25vmin;
+    color: var(--font-color-accent);
+    font-size: 2.75vmin;
+}
+
+#searchBar.closed #searchInput {
+    transform: scaleX(3);
+    opacity: 0
+}
+
+#searchInput::placeholder {
+    color: var(--font-color-accent-light)
+}
+
+#plusIcon {
+    color: var(--accent-color-light);
+    transition: all .2s;
+    margin-right: -0.25vmin;
+    /* mostly fix jittering if mouse is on edge by making it a circle */
+    border-radius: 50%;
+}
+
+#plusIcon:hover {
+    color: var(--accent-color-light-light);
+    transform: scale(1.1);
+    stroke-width: 3;
+}
+
+#questionIcon {
+    color: var(--accent-color-light);
+    transition: all .2s;
+    margin-right: -0.25vmin;
+    border-radius: 50%;
+}
+
+#questionIcon:hover {
+    color: var(--accent-color-light-light);
+    transform: rotatez(-0.5turn) scale(1.1);
+}
+
+#settingsIcon {
+    margin-right: 1.5vmin;
+    color: var(--accent-color-light);
+    transition: all .2s;
+    border-radius: 50%;
+}
+
+#settingsIcon:hover {
+    color: var(--accent-color-light-light);
+    transform: rotatez(.25turn) scale(1.1);
+}
+
+/* all styles */
+#grid::-webkit-scrollbar {
+    display: none;
+}
+
+/* style crab */
+#grid {
+    scrollbar-width: none;
+    overscroll-behavior: auto;
+    align-content: start;
+
+    display: grid;
+    width: 95%;
+    margin: auto;
+    height: 100%;
+
+    margin-bottom: 1.5vmin;
+    border-radius: 5vmin;
+    padding: 2.5vmin;
+
+    overflow-y: scroll;
+    margin-top: 1.5vmin;
+    justify-content: center;
+
+    grid-template-columns: repeat(auto-fit, minmax(30vmin, 1fr));
+    gap: 2.5vmin;
+    box-shadow: inset 0 0 0 0.2vmin var(--border-color);
+}
+
+.game {
+    aspect-ratio: 1;
+    transition: all 0.3s;
+}
+
+.game:hover {
+    transition: all 0.00s;
+}
+
+.gameImage {
+    background-image: url(https://www.shutterstock.com/image-photo/single-fresh-tuna-fish-isolated-260nw-2634483817.jpg);
+    background-position: 50%;
+    aspect-ratio: 1;
+    border-radius: 5vmin;
+    transition: all 0.2s;
+    display: grid;
+    overflow: hidden;
+}
+
+.game:hover>.gameImage {
+    transition: all 0.1s;
+}
+
+.gameLabel {
+    opacity: 0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--font-color-accent);
+    background-color: var(--accent-color-transparent-high);
+    height: 100%;
+    border-radius: 5vmin;
+    box-shadow: inset 0 0 0 0.2vmin var(--border-color);
+
+    transition: all 0.4s;
+}
+
+.game:hover>.gameImage>.gameLabel {
+    opacity: 1;
+    backdrop-filter: blur(0.75px);
+    transition: all 0.1s;
+}
+
+/* style gn */
+#grid.gn {
+    scrollbar-width: none;
+    overscroll-behavior: auto;
+
+    display: grid;
+    width: 95%;
+    margin: auto;
+    height: 100%;
+
+    margin-bottom: 1.5vmin;
+    border-radius: 50px;
+    padding: 2.5vmin;
+
+    overflow-y: scroll;
+    margin-top: 1.5vmin;
+    justify-content: center;
+
+    grid-template-columns: repeat(auto-fit, minmax(4, 600vmin));
+    gap: 2.5vmin;
+}
+
+.game.gn {
+    aspect-ratio: 4 / 5;
+    background-color: lime;
+    border-radius: 25px;
+}
+
+.gameImage.gn {
+    background-image: url(https://www.shutterstock.com/image-photo/single-fresh-tuna-fish-isolated-260nw-2634483817.jpg);
+    background-position: 50%;
+    aspect-ratio: 1;
+    border-radius: 25px 25px 0 0;
+}
+
+.gameLabel.gn {}
+
+/* popup menus */
+#gamePopup {
+    display: flex;
+    justify-content: center;
+    top: 50%;
+    left: 50%;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%) scale(0.01);
+    opacity: 0;
+    transform-origin: center;
+    background-color: var(--bg);
+    transition: all 0.3s;
+    border: 2px solid var(--accent-color);
+    box-sizing: border-box;
+}
+
+#gamePopup.open {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+/* game frame */
+#gameFrame {
+    width: 100%;
+    height: 100%;
+    border: none;
+
+    z-index: -1;
+    position: fixed;
+}
+
+/* game toolbar */
+#gameToolbar {
+    display: flex;
+    flex-direction: row;
+
+    width: 75vw;
+    height: 8%;
+    margin-bottom: 1.5vmin;
+    margin-top: auto;
+
+    place-self: center;
+    align-items: center;
+    border-radius: 999px;
+
+    box-shadow: inset 0 0 0 0.2vmin var(--border-color);
+    background-color: var(--accent-color-dark);
+
+    padding-right: 1vh;
+}
+
+/* this css is realllly weird because it used to be completely different */
+#gameInfo {
+    display: flex;
+    flex-direction: row;
+    place-items: center;
+
+    width: calc-size(auto, size + 1.5vmin);
+    padding-left: 1.5vmin;
+    max-width: 40ch;
+
+    border-radius: 999px;
+    background-color: var(--accent-color);
+    height: 80%;
+    transition: background-color 0.1s;
+
+    margin-right: auto;
+    margin-left: 0.8vh;
+}
+
+#gameInfo:hover {
+    background-color: var(--accent-color-light);
+}
+
+#gameName {
+    text-align: center;
+    font-size: 3vmin;
+    color: var(--font-color-accent);
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* rest of game toolbar */
+#gameFullscreenIcon {
+    margin-right: 2vmin;
+    margin-left: auto;
+    color: var(--accent-color-light);
+    transition: all 0.2s;
+}
+
+#gameFullscreenIcon:hover {
+    color: var(--accent-color-light-light);
+    transform: scale(1.1);
+    stroke-width: 3;
+}
+
+#gameDownloadIcon {
+    color: var(--accent-color-light);
+    transition: all 0.2s;
+}
+
+#gameDownloadIcon:hover {
+    color: var(--accent-color-light-light);
+    transform: scale(1.1) scaleY(0.9);
+    margin-top: 10%;
+
+}
+
+#gameExitIcon {
+    color: var(--accent-color-light);
+    transition: all 0.2s;
+}
+
+#gameExitIcon:hover {
+    color: var(--danger-color);
+    transform: scale(1.1);
+}
+
+/* repo menu */
+#repoMenu {
+    opacity: 1;
+
+    place-self: center;
+    position: fixed;
+
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg);
+}
+
+/* repo left panel */
+#repoLeftPanel {
+    padding-left: 3vmin;
+    padding-top: 3vmin;
+    max-width: 50%;
+    height: 100%;
+    background-color: var(--bg-accent);
+}
+
+#repoUrlInput {
+    background-color: var(--accent-color-dark-dark);
+    width: calc(100% - 3vmin);
+    height: 6.5vh;
+    font-size: 3vmin;
+    color: var(--font-color-accent-dark);
+
+    border: 2px solid var(--border-color);
+    border-radius: 5vmin;
+    padding-left: 1.5vmin;
+    outline: none;
+}
+
+#repoUrlInput::placeholder {
+    color: var(--font-color-accent)
+}

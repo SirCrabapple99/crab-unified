@@ -1,3 +1,5 @@
+// this file is mostly misc menu stuff
+
 // define all menu stuff
 const searchBar = document.getElementById("searchBar");
 const searchInput = document.getElementById("searchInput");
@@ -18,27 +20,20 @@ function toggleSearchBar() {
     searchBarOpen = !searchBarOpen;
 }
 
-function toggleSettingsMenu() {
+function openSettingsMenu() {
 
 }
 
-// games
-let hover;
+const gamesMenu = document.getElementById("gamePopup");
+function openGamesMenu() {
+    gamesMenu.classList.add("open");
+}
 
-// mouse rotate effect things
-window.addEventListener("load", (e) => {
-    const games = document.getElementsByClassName("game");
-    for (game of games) {
-        game.addEventListener("mousemove", (e) => {
-            mouseEffect(e);
-        });
+function closeGamesMenu() {
+    gamesMenu.classList.remove("open");
+}
 
-        game.addEventListener("mouseleave", (e) => {
-            e.currentTarget.querySelector(".gameImage").style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
-        });
-    }
-});
-
+// mouse effect stuff
 function mouseEffect(e) {
     const el = e.currentTarget.querySelector(".gameImage");
     const rect = el.getBoundingClientRect();
@@ -47,13 +42,7 @@ function mouseEffect(e) {
     el.style.transform = `perspective(1000px) rotateX(${-y}deg) rotateY(${x}deg)`;
 }
 
-function ripples() {
-    const ripple = document.getElementById('ripple')
-    const scale = document.getElementById('scale')
-
-    // add slight randomness
-    ripple.setAttribute('values', `${0.005 + Math.random()/100}; 0`)
-    scale.setAttribute('values', `0; ${15.5 + Math.random()*3}; 0`)
-
-    ripple.beginElement()
+// game frame
+function openGameInfo() {
+    gamesMenu
 }
