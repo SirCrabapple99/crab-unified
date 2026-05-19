@@ -24,9 +24,9 @@
 
         <!-- div wrapper on icons is so that margin and stuff doesn't get screwed up -->
         <div class="iconFix" style="margin-right: auto; margin-left: 0.4vmin">
-            <svg id="plusIcon" onclick="openRepoMenu()" xmlns="http://www.w3.org/2000/svg" width="auto" height="80%" viewBox="0 0 24 24"
-                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="lucide lucide-circle-plus-icon lucide-circle-plus">
+            <svg id="plusIcon" onclick="openRepoMenu()" xmlns="http://www.w3.org/2000/svg" width="auto" height="80%"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" class="lucide lucide-circle-plus-icon lucide-circle-plus">
                 <circle cx="12" cy="12" r="10" />
                 <path d="M8 12h8" />
                 <path d="M12 8v8" />
@@ -111,13 +111,23 @@
                 <input type="text" placeholder="repo url..." id="repoUrlInput" class="ubuntu-medium">
             </div>
             <div id="repoType">
-                <div id="repoTypeJson" onclick="selectRepoType(event)" class="repoTypeButton ubuntu-medium selected">JSON</div>
-                <div id="repoTypePlaceholder" onclick="selectRepoType(event)" class="repoTypeButton ubuntu-medium">Website</div>
-                <div id="repoTypePlaceholder" onclick="selectRepoType(event)" class="repoTypeButton ubuntu-medium">Auto</div>
+                <div id="repoTypeJson" onclick="selectRepoType(event)" class="repoTypeButton ubuntu-medium selected">
+                    JSON</div>
+                <div id="repoTypePlaceholder" onclick="selectRepoType(event)" class="repoTypeButton ubuntu-medium">
+                    Website</div>
+                <div id="repoTypePlaceholder" onclick="selectRepoType(event)" class="repoTypeButton ubuntu-medium">Auto
+                </div>
             </div>
         </div>
         <div id="repoRightPanel">
-
+            <div class="iconFix">
+                <svg id="repoExitIcon" onclick="closeRepoMenu()" xmlns="http://www.w3.org/2000/svg" width="auto"
+                    height="8vmin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x">
+                    <path d="M18 6 6 18" />
+                    <path d="m6 6 12 12" />
+                </svg>
+            </div>
         </div>
     </div>
 

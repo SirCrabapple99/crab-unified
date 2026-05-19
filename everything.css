@@ -371,11 +371,12 @@ html {
 
 /* repo menu */
 #repoMenu {
-    visibility: hidden;
+    pointer-events: none;
     opacity: 0;
 
     place-self: center;
     position: fixed;
+    display: flex;
 
     width: 100%;
     height: 100%;
@@ -384,7 +385,7 @@ html {
 }
 
 #repoMenu.open {
-    visibility: visible;
+    pointer-events: all;
     opacity: 1;
 }
 
@@ -392,7 +393,7 @@ html {
 #repoLeftPanel {
     padding-left: 2vmin;
     padding-top: 2vmin;
-    max-width: 50%;
+    width: 50%;
     height: 100%;
     background-color: var(--bg-accent);
 }
@@ -452,4 +453,22 @@ html {
 
 .repoTypeButton.selected {
     background-color: var(--accent-color-light-dark);
+}
+
+/* repo right panel */
+#repoRightPanel {
+    width: 50%;
+    height: 100%;
+    background-color: var(--bg);
+}
+
+#repoExitIcon {
+    color: var(--accent-color-light);
+    transition: all 0.2s;
+}
+
+#repoExitIcon:hover {
+    
+    color: var(--danger-color);
+    transform: scale(1.1);
 }
