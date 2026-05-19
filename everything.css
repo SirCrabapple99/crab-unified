@@ -383,8 +383,8 @@ html {
 
 /* repo left panel */
 #repoLeftPanel {
-    padding-left: 3vmin;
-    padding-top: 3vmin;
+    padding-left: 2vmin;
+    padding-top: 2vmin;
     max-width: 50%;
     height: 100%;
     background-color: var(--bg-accent);
@@ -392,17 +392,57 @@ html {
 
 #repoUrlInput {
     background-color: var(--accent-color-dark-dark);
-    width: calc(100% - 3vmin);
+    width: calc(100% - 2vmin);
     height: 6.5vh;
     font-size: 3vmin;
     color: var(--font-color-accent-dark);
 
-    border: 2px solid var(--border-color);
+    box-shadow: inset 0 0 0 0.2vmin var(--border-color);
     border-radius: 5vmin;
     padding-left: 1.5vmin;
     outline: none;
+    border: none;
 }
 
 #repoUrlInput::placeholder {
     color: var(--font-color-accent)
+}
+
+#repoType {
+    display: grid;
+    width: calc(100% - 1.6vmin);
+    height: 8%;
+    margin-top: 2vmin;
+    margin-left: -0.2vmin;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.repoTypeButton {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    color: var(--font-color-accent-dark);
+    background-color: var(--accent-color-dark-dark);
+    box-shadow: inset 0 0 0 0.2vmin var(--border-color);
+
+    place-content: center;
+    font-size: 4vmin;
+}
+
+.repoTypeButton:first-child {
+    transform: translateX(0.2vmin);
+    border-radius: 5vmin 0 0 5vmin;
+}
+
+.repoTypeButton:last-child {
+    transform: translateX(-0.2vmin);
+    border-radius: 0 5vmin 5vmin 0;
+}
+
+.repoTypeButton:hover {
+    background-color: var(--accent-color-dark);
+}
+
+.repoTypeButton.selected {
+    background-color: var(--accent-color-light-dark);
 }

@@ -111,8 +111,9 @@
                 <input type="text" placeholder="repo url..." id="repoUrlInput" class="ubuntu-medium">
             </div>
             <div id="repoType">
-                <div id="repoTypeJson">JSON</div>
-                <div id="repoTypePlaceholder">Placeholde</div>
+                <div id="repoTypeJson" onclick="selectRepoType(event)" class="repoTypeButton ubuntu-medium selected">JSON</div>
+                <div id="repoTypePlaceholder" onclick="selectRepoType(event)" class="repoTypeButton ubuntu-medium">Website</div>
+                <div id="repoTypePlaceholder" onclick="selectRepoType(event)" class="repoTypeButton ubuntu-medium">Auto</div>
             </div>
         </div>
         <div id="repoRightPanel">
