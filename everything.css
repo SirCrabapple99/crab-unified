@@ -434,6 +434,7 @@ html {
 
     place-content: center;
     font-size: 4vmin;
+    transition: all 0.2s;
 }
 
 .repoTypeButton:first-child {
