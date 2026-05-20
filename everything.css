@@ -195,6 +195,7 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 2.5rem;
     color: var(--font-color-accent);
     background-color: var(--accent-color-transparent-high);
     height: 100%;
@@ -261,8 +262,6 @@ html {
     transform-origin: center;
     background-color: var(--bg);
     transition: all 0.3s;
-    border: 2px solid var(--accent-color);
-    box-sizing: border-box;
 }
 
 #gamePopup.open {
