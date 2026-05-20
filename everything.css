@@ -74,12 +74,6 @@ html {
     transform: scaleX(1)
 }
 
-#searchBar.closed {
-    width: 0;
-    opacity: 0;
-    transform: scaleX(0)
-}
-
 #searchInput {
     background-color: transparent;
     border: 0;
@@ -90,26 +84,21 @@ html {
     font-size: 2.25rem;
 }
 
-#searchBar.closed #searchInput {
-    transform: scaleX(3);
-    opacity: 0
-}
-
 #searchInput::placeholder {
     color: var(--font-color-accent-light)
 }
 
 #plusIcon {
+    margin-right: auto;
+    margin-left: -0.1rem;
     color: var(--accent-color-light);
     transition: all .2s;
-    margin-right: -0.25rem;
     /* mostly fix jittering if mouse is on edge by making it a circle */
     border-radius: 50%;
 }
 
 #plusIcon:hover {
     color: var(--accent-color-light-light);
-    transform: scale(1.1);
     stroke-width: 3;
 }
 
